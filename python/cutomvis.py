@@ -156,19 +156,14 @@ _prev_spectrum = np.tile(0.01, config.N_PIXELS // 2)
 
 def visualize_spectrum(y):
     """Effect that maps the Mel filterbank frequencies onto the LED strip"""
-    global _prev_spectrum
-    y = np.copy(interpolate(y, config.N_PIXELS // 2))
-    common_mode.update(y)
-    diff = y - _prev_spectrum
-    _prev_spectrum = np.copy(y)
-    # Color channel mappings
-        y = y**2.0
-        gain.update(y)
-        y /= gain.value
-        y *= 255.0
-        r = int(np.max(y[:len(y) // 3]))
-        g = int(np.max(y[len(y) // 3: 2 * len(y) // 3]))
-        b = int(np.max(y[2 * len(y) // 3:]))
+    global p
+    y = y**2.0
+    gain.update(y)
+    y /= gain.value
+    y *= 255.0
+    r = int(np.max(y[:len(y) // 3]))
+    g = int(np.max(y[len(y) // 3: 2 * len(y) // 3]))
+    b = int(np.max(y[2 * len(y) // 3:]))
         # Scrolling effect window
     # Mirror the color channels for symmetric output
     r = np.concatenate((r[::-1], r))
