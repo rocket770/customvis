@@ -162,14 +162,14 @@ def visualize_spectrum(y):
     diff = y - _prev_spectrum
     _prev_spectrum = np.copy(y)
     # Color channel mappings
-        y = y**2.0
-        gain.update(y)
-        y /= gain.value
-        y *= 255.0
-        r = int(np.max(y[:len(y) // 3]))
-        g = int(np.max(y[len(y) // 3: 2 * len(y) // 3]))
-        b = int(np.max(y[2 * len(y) // 3:]))
-        # Scrolling effect window
+    y = y**2.0
+    gain.update(y)
+    y /= gain.value
+    y *= 255.0
+    r = int(np.max(y[:len(y) // 3]))
+    g = int(np.max(y[len(y) // 3: 2 * len(y) // 3]))
+    b = int(np.max(y[2 * len(y) // 3:]))
+     # Scrolling effect window
     # Mirror the color channels for symmetric output
     r = np.concatenate((r[::-1], r))
     g = np.concatenate((g[::-1], g))
