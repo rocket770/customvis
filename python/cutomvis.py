@@ -110,15 +110,15 @@ def visualize_scroll(y):
     g = int(np.max(y[len(y) // 3: 2 * len(y) // 3]))
     b = int(np.max(y[2 * len(y) // 3:]))
     # Scrolling effect window
-    #p[:, 1:] = p[:, :-1]
-    #p *= 0.98
-   # p = gaussian_filter1d(p, sigma=0.2)
+    p[:, 1:] = p[:, :-1]
+    p *= 0.98
+    p = gaussian_filter1d(p, sigma=0.2)
     # Create new color originating at the center
-    r = np.concatenate((r[::-1], r))
-    g = np.concatenate((g[::-1], g))
-    b = np.concatenate((b[::-1], b))
-    output = np.array([r, g,b]) * 255
-    return output
+    p[0, 0] = r
+    p[1, 0] = g
+    p[2, 0] = b
+    # Update the LED strip
+    return np.concatenate((p[:, ::-1], p), axis=1)
 
 
 def visualize_energy(y):
@@ -156,7 +156,12 @@ _prev_spectrum = np.tile(0.01, config.N_PIXELS // 2)
 
 def visualize_spectrum(y):
     """Effect that maps the Mel filterbank frequencies onto the LED strip"""
-    global p
+    global _prev_spectrum
+    y = np.copy(interpolate(y, config.N_PIXELS // 2))
+    common_mode.update(y)
+    diff = y - _prev_spectrum
+    _prev_spectrum = np.copy(y)
+    # Color channel mappings
     y = y**2.0
     gain.update(y)
     y /= gain.value
@@ -169,16 +174,8 @@ def visualize_spectrum(y):
     r = np.concatenate((r[::-1], r))
     g = np.concatenate((g[::-1], g))
     b = np.concatenate((b[::-1], b))
-    
-    
-    p[0, 0] = r
-    p[1, 0] = g
-    p[2, 0] = b
-    # Update the LED strip
-    return np.concatenate((p[:, ::-1], p), axis=1)
-    #output = np.array([r, g,b]) * 255
-                          
-    #return output
+    output = np.array([r, g,b]) * 255
+    return output
 
 
 fft_plot_filter = dsp.ExpFilter(np.tile(1e-1, config.N_FFT_BINS),
