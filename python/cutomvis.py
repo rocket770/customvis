@@ -175,10 +175,10 @@ def visualize_spectrum(y):
     p[1, 0] = g
     p[2, 0] = b
     # Update the LED strip
-    return np.concatenate((p[:, ::-1], p), axis=
-    output = np.array([r, g,b]) * 255
+    return np.concatenate((p[:, ::-1], p), axis=1)
+    #output = np.array([r, g,b]) * 255
                           
-    return output
+    #return output
 
 
 fft_plot_filter = dsp.ExpFilter(np.tile(1e-1, config.N_FFT_BINS),
