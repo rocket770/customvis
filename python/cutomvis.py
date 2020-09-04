@@ -155,13 +155,7 @@ _prev_spectrum = np.tile(0.01, config.N_PIXELS // 2)
 
 
 def visualize_spectrum(y):
-    """Effect that maps the Mel filterbank frequencies onto the LED strip"""
-    global _prev_spectrum
-    y = np.copy(interpolate(y, config.N_PIXELS // 2))
-    common_mode.update(y)
-    diff = y - _prev_spectrum
-    _prev_spectrum = np.copy(y)
-    # Color channel mappings
+    global p
     y = y**2.0
     gain.update(y)
     y /= gain.value
