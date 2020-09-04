@@ -169,7 +169,15 @@ def visualize_spectrum(y):
     r = np.concatenate((r[::-1], r))
     g = np.concatenate((g[::-1], g))
     b = np.concatenate((b[::-1], b))
+    
+    
+    p[0, 0] = r
+    p[1, 0] = g
+    p[2, 0] = b
+    # Update the LED strip
+    return np.concatenate((p[:, ::-1], p), axis=
     output = np.array([r, g,b]) * 255
+                          
     return output
 
 
