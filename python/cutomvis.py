@@ -262,7 +262,7 @@ def changemode():
         print('Switch! ' + "Mode: " +str(mode))
         mode +=1
         delay = 0
-        if(mode == 4):6
+        if(mode == 4):
             mode = 1
     if mode == 1:
             visualization_type = visualize_spectrum
