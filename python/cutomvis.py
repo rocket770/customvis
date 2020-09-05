@@ -8,7 +8,7 @@ import microphone
 import dsp
 import led
 import sys
-from pynput.keyboard import Key, Listener
+import keyboard
 mode = 1
 visualization_type = sys.argv[1]
 
