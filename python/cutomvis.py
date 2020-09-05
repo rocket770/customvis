@@ -264,7 +264,7 @@ def microphone_update(audio_samples):
              visualization_type = visualize_spectrum        
 
     visualization_effect = visualization_type
-    if(mode >= 6):
+    if(mode >= 7):
             mode = 1
    
 
