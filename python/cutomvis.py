@@ -241,7 +241,7 @@ def microphone_update(audio_samples):
         fps = frames_per_second()
         if time.time() - 0.5 > prev_fps_update:
             prev_fps_update = time.time()
-            print('FPS {:.0f} / {:.0f}'.format(fps, config.FPS) +str(mode))
+            print('FPS {:.0f} / {:.0f}'.format(fps, config.FPS) +"--mode: "+str(mode))
         
     delay+=1
     if (keyboard.is_pressed('q') and delay >= 10):
