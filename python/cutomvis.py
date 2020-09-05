@@ -8,6 +8,7 @@ import microphone
 import dsp
 import led
 import sys
+import keyboard
 
 visualization_type = sys.argv[1]
 
@@ -155,15 +156,16 @@ _prev_spectrum = np.tile(0.01, config.N_PIXELS // 2)
 
 
 def visualize_spectrum(y):
-    global p
-    y = y**2.0
-    gain.update(y)
-    y /= gain.value
-    y *= 255.0
-    r = int(np.max(y[:len(y) // 3]))
-    g = int(np.max(y[len(y) // 3: 2 * len(y) // 3]))
-    b = int(np.max(y[2 * len(y) // 3:]))
-        # Scrolling effect window
+    """Effect that maps the Mel filterbank frequencies onto the LED strip"""
+    global _prev_spectrum
+    y = np.copy(interpolate(y, config.N_PIXELS // 2))
+    common_mode.update(y)
+    diff = y - _prev_spectrum
+    _prev_spectrum = np.copy(y)
+    # Color channel mappings
+    r = r_filt.update(y - common_mode.value)
+    g = np.abs(diff)
+    b = b_filt.update(np.copy(y))
     # Mirror the color channels for symmetric output
     r = np.concatenate((r[::-1], r))
     g = np.concatenate((g[::-1], g))
@@ -252,6 +254,28 @@ elif sys.argv[1] == "scroll":
         visualization_type = visualize_scroll
 else:
         visualization_type = visualize_spectrum
+
+# create key switch for modes using "q"
+delay = 1000  # using module keyboard
+mode = 1
+while True:  # making a loop
+    if (keyboard.is_pressed('q') and delay >= 10000):  # if key 'q' is pressed
+            print('Switch! ' + "Mode: " +str(mode))
+            mode +=1
+            delay = 0
+            if(mode == 4):
+                mode = 1
+    delay+=1
+    if mode == 1:
+            visualization_type = visualize_spectrum
+    if mode == 2:
+            visualization_type = visualize_energy
+    if mode == 3:
+            visualization_type = visualize_scroll
+    else:
+            visualization_type = visualize_spectrum
+
+
 
 visualization_effect = visualization_type
 """Visualization effect to display on the LED strip"""
