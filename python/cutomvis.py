@@ -258,12 +258,12 @@ else:
 # create key switch for modes using "q"
 mode = 1
 def changemode():
+    print('test')
     global mode
-    b = input("")
-    if(b=="q"):
+    b = input('')
+    if(b=='q'):
         print('Switch! ' + "Mode: " +str(mode))
         mode +=1
-        delay = 0
         if(mode == 4):
             mode = 1
     if mode == 1:
