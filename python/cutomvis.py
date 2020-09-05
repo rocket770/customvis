@@ -261,7 +261,7 @@ def microphone_update(audio_samples):
     if mode == 5:
        #rainbow effect pulse to beat
              visualization_type = visualize_scroll
-             visualization_type = visualize_enegry
+             visualization_type = visualize_energy
              if flashdelay == 5:
                 visualization_type = visualize_spectrum     
                 flashdelay = 0
