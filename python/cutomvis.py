@@ -256,7 +256,7 @@ def microphone_update(audio_samples):
             visualization_type = visualize_scroll
     else:
             visualization_type = visualize_spectrum
-    delay++
+    delay+=1
 
 
 # Number of audio samples to read every time frame
