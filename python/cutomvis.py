@@ -10,6 +10,7 @@ import led
 import sys
 import keyboard
 mode = 1
+delay = 0
 visualization_type = sys.argv[1]
 
 _time_prev = time.time() * 1000.0
@@ -240,10 +241,11 @@ def microphone_update(audio_samples):
             print('FPS {:.0f} / {:.0f}'.format(fps, config.FPS))
             
     global mode
-    b = input('')
-    if(b=='q'):
+    global delay
+    if (keyboard.is_pressed('q') and delay >= 10000): 
         print('Switch! ' + "Mode: " +str(mode))
         mode +=1
+        delay = 0
         if(mode == 4):
             mode = 1
     if mode == 1:
@@ -254,6 +256,7 @@ def microphone_update(audio_samples):
             visualization_type = visualize_scroll
     else:
             visualization_type = visualize_spectrum
+    delay++
 
 
 # Number of audio samples to read every time frame
