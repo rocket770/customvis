@@ -246,18 +246,18 @@ def microphone_update(audio_samples):
     delay+=1
     if (keyboard.is_pressed('q') and delay >= 10):
         mode +=1
-        print('Switch! ' + "Mode: " +str(mode) +"  -- Visualization Type: " +str(visualization_type))
+        print('Switch! ' + "Mode: " +str(mode) +"  -- Visualization Type: " +str(visualization_effect))
         delay = 0
-        if mode == 1:
+    if mode == 1:
             visualization_type = visualize_spectrum
-        if mode == 2:
+    if mode == 2:
             visualization_type = visualize_energy
-        if mode == 3:
+    if mode == 3:
             visualization_type = visualize_scroll
-        visualization_effect = visualization_type
-        if(mode >= 4):
+    visualization_effect = visualization_type
+    if(mode >= 4):
             mode = 1
-
+   
 
 
 # Number of audio samples to read every time frame
