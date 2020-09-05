@@ -256,7 +256,7 @@ else:
 
 # create key switch for modes using "q"
 mode = 1
-while True:  # making a loop
+def changemode():
     b = input("")
     if(b=='q'):
         print('Switch! ' + "Mode: " +str(mode))
@@ -380,4 +380,5 @@ if __name__ == '__main__':
     # Initialize LEDs
     led.update()
     # Start listening to live audio stream
+    changemode()
     microphone.start_stream(microphone_update)
