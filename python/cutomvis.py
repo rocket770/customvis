@@ -257,7 +257,7 @@ def microphone_update(audio_samples):
     else:
             visualization_type = visualize_spectrum
     delay+=1
-    global visualization_efft
+    global visualization_effect
     visualization_effect = visualization_type
 
 
