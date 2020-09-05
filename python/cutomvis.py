@@ -254,8 +254,13 @@ def microphone_update(audio_samples):
             visualization_type = visualize_energy
     if mode == 3:
             visualization_type = visualize_scroll
+    if mode == 5:
+       #rave effect
+             visualization_type = visualize_scroll
+             visualization_type = visualize_energy
+
     visualization_effect = visualization_type
-    if(mode >= 4):
+    if(mode >= 5):
             mode = 1
    
 
