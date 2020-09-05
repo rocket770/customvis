@@ -235,19 +235,18 @@ def microphone_update(audio_samples):
     if config.USE_GUI:
         app.processEvents()
 
+    global mode
+    global delay    
     if config.DISPLAY_FPS:
         fps = frames_per_second()
         if time.time() - 0.5 > prev_fps_update:
             prev_fps_update = time.time()
-            print('FPS {:.0f} / {:.0f}'.format(fps, config.FPS))
-            
-    global mode
-    global delay
-  
+            print('FPS {:.0f} / {:.0f}'.format(fps, config.FPS) +str(mode))
+        
     delay+=1
-    if (keyboard.is_pressed('q') and delay >= 10): 
-        print('Switch! ' + "Mode: " +str(mode) +"  -- Visualization Type: " +str(visualization_type))
+    if (keyboard.is_pressed('q') and delay >= 10):
         mode +=1
+        print('Switch! ' + "Mode: " +str(mode) +"  -- Visualization Type: " +str(visualization_type))
         delay = 0
         if mode == 1:
             visualization_type = visualize_spectrum
@@ -255,10 +254,8 @@ def microphone_update(audio_samples):
             visualization_type = visualize_energy
         if mode == 3:
             visualization_type = visualize_scroll
-        else:
-            visualization_type = visualize_spectrum
         visualization_effect = visualization_type
-        if(mode == 4):
+        if(mode >= 4):
             mode = 1
 
 
