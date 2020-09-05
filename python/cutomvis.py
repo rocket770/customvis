@@ -258,6 +258,7 @@ else:
 # create key switch for modes using "q"
 mode = 1
 def changemode():
+    global mode
     b = input("")
     if(b=='q'):
         print('Switch! ' + "Mode: " +str(mode))
