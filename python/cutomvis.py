@@ -188,6 +188,7 @@ prev_fps_update = time.time()
 
 
 def microphone_update(audio_samples):
+    global visualization_effect
     global y_roll, prev_rms, prev_exp, prev_fps_update
     # Normalize samples between 0 and 1
     y = audio_samples / 2.0**15
@@ -257,7 +258,6 @@ def microphone_update(audio_samples):
     else:
             visualization_type = visualize_spectrum
     delay+=1
-    global visualization_effect
     visualization_effect = visualization_type
 
 
