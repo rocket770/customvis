@@ -186,7 +186,7 @@ volume = dsp.ExpFilter(config.MIN_VOLUME_THRESHOLD,
 fft_window = np.hamming(int(config.MIC_RATE / config.FPS) * config.N_ROLLING_HISTORY)
 prev_fps_update = time.time()
 
-
+flashdelay = 0
 def microphone_update(audio_samples):
     global visualization_effect, visualization_type
     global y_roll, prev_rms, prev_exp, prev_fps_update
@@ -236,7 +236,7 @@ def microphone_update(audio_samples):
         app.processEvents()
 
     global mode
-    global delay    
+    global delay, flashdelay    
     if config.DISPLAY_FPS:
         fps = frames_per_second()
         if time.time() - 0.5 > prev_fps_update:
@@ -261,13 +261,15 @@ def microphone_update(audio_samples):
     if mode == 5:
        #rainbow effect pulse to beat
              visualization_type = visualize_scroll
-             visualization_type = visualize_energy
-             visualization_type = visualize_spectrum        
+             visualization_type = visualize_enegry
+             if flashdelay == 5:
+                visualization_type = visualize_spectrum     
+                flashdelay = 0
 
     visualization_effect = visualization_type
     if(mode >= 6):
             mode = 1
-   
+    flashdelay+=1
 
 
 # Number of audio samples to read every time frame
