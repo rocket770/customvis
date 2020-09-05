@@ -8,7 +8,6 @@ import microphone
 import dsp
 import led
 import sys
-import keyboard
 
 visualization_type = sys.argv[1]
 
@@ -256,16 +255,15 @@ else:
         visualization_type = visualize_spectrum
 
 # create key switch for modes using "q"
-delay = 1000  # using module keyboard
 mode = 1
 while True:  # making a loop
-    if (keyboard.is_pressed('q') and delay >= 10000):  # if key 'q' is pressed
-            print('Switch! ' + "Mode: " +str(mode))
-            mode +=1
-            delay = 0
-            if(mode == 4):
-                mode = 1
-    delay+=1
+    b = input("")
+    if(b=='q'):
+        print('Switch! ' + "Mode: " +str(mode))
+        mode +=1
+        delay = 0
+        if(mode == 4):6
+            mode = 1
     if mode == 1:
             visualization_type = visualize_spectrum
     if mode == 2:
