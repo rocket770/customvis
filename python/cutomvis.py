@@ -238,6 +238,22 @@ def microphone_update(audio_samples):
         if time.time() - 0.5 > prev_fps_update:
             prev_fps_update = time.time()
             print('FPS {:.0f} / {:.0f}'.format(fps, config.FPS))
+            
+    global mode
+    b = input('')
+    if(b=='q'):
+        print('Switch! ' + "Mode: " +str(mode))
+        mode +=1
+        if(mode == 4):
+            mode = 1
+    if mode == 1:
+            visualization_type = visualize_spectrum
+    if mode == 2:
+            visualization_type = visualize_energy
+    if mode == 3:
+            visualization_type = visualize_scroll
+    else:
+            visualization_type = visualize_spectrum
 
 
 # Number of audio samples to read every time frame
@@ -256,24 +272,9 @@ else:
         visualization_type = visualize_spectrum
 
 # create key switch for modes using "q"
-mode = 1
-def changemode():
-    print('test')
-    global mode
-    b = input('')
-    if(b=='q'):
-        print('Switch! ' + "Mode: " +str(mode))
-        mode +=1
-        if(mode == 4):
-            mode = 1
-    if mode == 1:
-            visualization_type = visualize_spectrum
-    if mode == 2:
-            visualization_type = visualize_energy
-    if mode == 3:
-            visualization_type = visualize_scroll
-    else:
-            visualization_type = visualize_spectrum
+
+
+
 
 
 
@@ -382,5 +383,4 @@ if __name__ == '__main__':
     # Initialize LEDs
     led.update()
     # Start listening to live audio stream
-    changemode()
     microphone.start_stream(microphone_update)
