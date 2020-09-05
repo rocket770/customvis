@@ -242,7 +242,7 @@ def microphone_update(audio_samples):
             
     global mode
     global delay
-    if (keyboard.is_pressed('q') and delay >= 10): 
+    if (keyboard.is_pressed('q')): 
         print('Switch! ' + "Mode: " +str(mode))
         mode +=1
         delay = 0
@@ -257,6 +257,8 @@ def microphone_update(audio_samples):
     else:
             visualization_type = visualize_spectrum
     delay+=1
+    visualization_effect = visualization_type
+
 
 
 # Number of audio samples to read every time frame
