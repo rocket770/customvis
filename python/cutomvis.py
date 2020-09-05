@@ -246,7 +246,7 @@ def microphone_update(audio_samples):
   
     delay+=1
     if (keyboard.is_pressed('q') and delay >= 10): 
-        print('Switch! ' + "Mode: " +str(mode) +"  -- Visualization Type: " +visualization_type)
+        print('Switch! ' + "Mode: " +str(mode) +"  -- Visualization Type: " +str(visualization_type))
         mode +=1
         delay = 0
         if mode == 1:
