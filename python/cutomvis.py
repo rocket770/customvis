@@ -9,6 +9,7 @@ import dsp
 import led
 import sys
 
+mode = 1
 visualization_type = sys.argv[1]
 
 _time_prev = time.time() * 1000.0
