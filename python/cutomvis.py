@@ -243,22 +243,23 @@ def microphone_update(audio_samples):
             
     global mode
     global delay
-    if (keyboard.is_pressed('q') and delay >= 10): 
-        print('Switch! ' + "Mode: " +str(mode) +"  -- Visualization Type: " +str(visualization_type))
+  
+    delay+=1
+     if (keyboard.is_pressed('q') and delay >= 10): 
+        print('Switch! ' + "Mode: " +str(mode) +"  -- Visualization Type: " +visualization_type)
         mode +=1
         delay = 0
+        if mode == 1:
+            visualization_type = visualize_spectrum
+        if mode == 2:
+            visualization_type = visualize_energy
+        if mode == 3:
+            visualization_type = visualize_scroll
+        else:
+            visualization_type = visualize_spectrum
+        visualization_effect = visualization_type
         if(mode == 4):
             mode = 1
-    if mode == 1:
-            visualization_type = visualize_spectrum
-    if mode == 2:
-            visualization_type = visualize_energy
-    if mode == 3:
-            visualization_type = visualize_scroll
-    else:
-            visualization_type = visualize_spectrum
-    delay+=1
-    visualization_effect = visualization_type
 
 
 
