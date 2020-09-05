@@ -256,8 +256,8 @@ def microphone_update(audio_samples):
             visualization_type = visualize_scroll
     if mode == 4:
        #rave effect
-             visualization_type = visualize_scroll
              visualization_type = visualize_energy
+             visualization_type = visualize_scroll
     if mode == 5:
        #rainbow effect pulse to beat
              visualization_type = visualize_scroll
