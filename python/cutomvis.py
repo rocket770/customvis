@@ -260,7 +260,7 @@ mode = 1
 def changemode():
     global mode
     b = input("")
-    if(b=='q'):
+    if(b=="q"):
         print('Switch! ' + "Mode: " +str(mode))
         mode +=1
         delay = 0
