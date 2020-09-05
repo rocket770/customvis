@@ -9,7 +9,7 @@ import dsp
 import led
 import sys
 import keyboard
-mode = 1
+mode = 0
 delay = 0
 visualization_type = sys.argv[1]
 
